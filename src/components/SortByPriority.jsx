@@ -1,5 +1,4 @@
-// SortByPriority.jsx
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import Card from './Card';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSlidersH, faChevronDown, faEllipsis, faExclamation, faAdd } from '@fortawesome/free-solid-svg-icons';
@@ -9,6 +8,22 @@ import pLow from '../assets/sig-low.png';
 import Dropdown from './Dropdown';
 
 const SortByPriority = ({ tickets, users, showFilterPopup, setShowFilterPopup, setGroupBy, setSortBy, sortBy }) => {
+  const popupRef = useRef(null);
+
+  useEffect(() => {
+    const handleOutsideClick = (event) => {
+      if (popupRef.current && !popupRef.current.contains(event.target)) {
+        setShowFilterPopup(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleOutsideClick);
+
+    return () => {
+      document.removeEventListener('mousedown', handleOutsideClick);
+    };
+  }, [popupRef, setShowFilterPopup]);
+
   const sortedTickets = (filteredTickets) => {
     if (sortBy === 'priority') {
       return filteredTickets.slice().sort((a, b) => b.priority - a.priority);
@@ -98,7 +113,7 @@ const SortByPriority = ({ tickets, users, showFilterPopup, setShowFilterPopup, s
           <FontAwesomeIcon icon={faChevronDown} />
         </button>
         {showFilterPopup && (
-          <div className="filter-popup">
+          <div className="filter-popup" ref={popupRef}>
             <Dropdown
               label="Grouping"
               options={[

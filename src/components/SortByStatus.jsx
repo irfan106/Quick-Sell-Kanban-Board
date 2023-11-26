@@ -1,5 +1,4 @@
-// SortByStatus.jsx
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Card from './Card';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -15,8 +14,42 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import Dropdown from './Dropdown';
 
-const SortByStatus = ({ tickets, showFilterPopup, setShowFilterPopup, setGroupBy, sortBy, setSortBy, users }) => {
+const SortByStatus = ({ tickets, setGroupBy, sortBy, setSortBy, users }) => {
+  const [showFilterPopup, setShowFilterPopup] = useState(false);
+  const buttonRef = useRef(null);
+  const popupRef = useRef(null);
+
+  useEffect(() => {
+    const handleOutsideClick = (event) => {
+      if (
+        buttonRef.current &&
+        !buttonRef.current.contains(event.target) &&
+        popupRef.current &&
+        !popupRef.current.contains(event.target)
+      ) {
+        setShowFilterPopup(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleOutsideClick);
+
+    return () => {
+      document.removeEventListener('mousedown', handleOutsideClick);
+    };
+  }, [buttonRef, popupRef]);
+
+  const toggleFilterPopup = () => {
+    setShowFilterPopup((prevShowFilterPopup) => !prevShowFilterPopup);
+  };
+
   const sortedTickets = (filteredTickets) => {
+    if (sortBy === 'priority') {
+      return filteredTickets.slice().sort((a, b) => b.priority - a.priority);
+    } else if (sortBy === 'title') {
+      return filteredTickets.slice().sort((a, b) => a.title.localeCompare(b.title));
+    } else if (sortBy === 'user') {
+      return filteredTickets;
+    }
     return filteredTickets;
   };
 
@@ -88,12 +121,16 @@ const SortByStatus = ({ tickets, showFilterPopup, setShowFilterPopup, setGroupBy
   return (
     <div>
       <div className="navbar">
-        <button className="display-button" onClick={() => setShowFilterPopup(!showFilterPopup)}>
+        <button
+          ref={buttonRef}
+          className="display-button"
+          onClick={toggleFilterPopup}
+        >
           <FontAwesomeIcon icon={faSlidersH} /> Display
           <FontAwesomeIcon icon={faChevronDown} />
         </button>
         {showFilterPopup && (
-          <div className="filter-popup">
+          <div className="filter-popup" ref={popupRef}>
             <Dropdown
               label="Grouping"
               options={[
@@ -116,8 +153,10 @@ const SortByStatus = ({ tickets, showFilterPopup, setShowFilterPopup, setGroupBy
           </div>
         )}
       </div>
-      <div className="horizontal-columns">
-        {renderStatusColumns()}
+      <div className="content-container">
+        <div className="horizontal-columns">
+          {renderStatusColumns()}
+        </div>
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useLayoutEffect } from 'react';
+import React, { useState, useEffect, useLayoutEffect, useRef } from 'react';
 import './KanbanBoard.css';
 import SortByUser from './SortByUser';
 import SortByPriority from './SortByPriority';
@@ -12,9 +12,12 @@ const KanbanBoard = () => {
   const [sortBy, setSortBy] = useState(localStorage.getItem('kanbanSortBy') || 'priority');
   const [showFilterPopup, setShowFilterPopup] = useState(false);
 
+  const popupRef = useRef(null);
+
   useEffect(() => {
     fetchData()
       .then((data) => {
+        console.log(data)
         setTickets(data.tickets);
         setUsers(data.users);
       })
@@ -44,6 +47,20 @@ const KanbanBoard = () => {
     }
   }, [groupBy, sortBy]);
 
+  useEffect(() => {
+    const handleOutsideClick = (event) => {
+      if (popupRef.current && !popupRef.current.contains(event.target)) {
+        setShowFilterPopup(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleOutsideClick);
+
+    return () => {
+      document.removeEventListener('mousedown', handleOutsideClick);
+    };
+  }, []);
+
   return (
     <div className="kanban-board">
       {groupBy === 'user' ? (
@@ -55,6 +72,7 @@ const KanbanBoard = () => {
           setGroupBy={setGroupBy}
           setSortBy={setSortBy}
           sortBy={sortBy}
+          popupRef={popupRef}
         />
       ) : groupBy === 'priority' ? (
         <SortByPriority
@@ -65,6 +83,7 @@ const KanbanBoard = () => {
           setGroupBy={setGroupBy}
           setSortBy={setSortBy}
           sortBy={sortBy}
+          popupRef={popupRef}
         />
       ) : (
         <SortByStatus
@@ -74,6 +93,8 @@ const KanbanBoard = () => {
           setShowFilterPopup={setShowFilterPopup}
           setGroupBy={setGroupBy}
           setSortBy={setSortBy}
+          sortBy={sortBy}
+          popupRef={popupRef}
         />
       )}
     </div>
