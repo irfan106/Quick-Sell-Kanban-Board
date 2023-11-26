@@ -1,0 +1,261 @@
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 20px;
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    position: relative;
+}
+
+.display-button {
+    display: flex;
+    align-items: center;
+    background: none;
+    border: 1px solid;
+    color: rgb(0, 0, 0);
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 25px;
+    font-weight: bold;
+    position: relative;
+    padding: 7px;
+}
+
+.display-button>* {
+    margin-right: 6px;
+    margin-left: 5px;
+}
+
+.filter-popup {
+    position: absolute;
+    top: 90%;
+    left: 4%;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(244, 244, 245);
+    border: 1px solid #ccc;
+    border-radius: 7px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    width: 25%;
+}
+
+.filter-popup button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.filter-popup button:hover {
+    background-color: #eee;
+}
+
+.filter-popup::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 8px;
+    border-style: solid;
+    border-color: transparent transparent #fff transparent;
+}
+
+.filter-option-button {
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+}
+
+.dropdown-content button {
+    width: 100%;
+    text-align: left;
+    border: none;
+    background: none;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.filter-option {
+    display: flex;
+    align-items: center;
+}
+
+.filter-text {
+    justify-content: center;
+    margin-right: 30%;
+    margin-left: 15px;
+    font-weight: 600;
+    font-size: 15px;
+    color: rgba(156, 156, 157, 0.95);
+}
+
+.dropdown-select {
+    width: 35%;
+    padding: 4px;
+    border: 1px solid #ccc;
+    font-weight: bold;
+    font-size: 15px;
+    border-radius: 3px;
+}
+
+.horizontal-columns {
+    max-width: 100%;
+    overflow-x: visible;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 -8px;
+}
+
+.column {
+    flex: 1;
+    margin: 0 10px;
+    min-width: 18%;
+}
+
+.kanban-board {
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+.column-header {
+    margin: 20px;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.column-header p {
+    margin: 20px 0 0 10px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+}
+
+.column-count {
+    margin-left: 8px;
+    font-size: 14px;
+    color: rgb(139, 139, 141);
+}
+
+
+.priority-icon {
+    margin-top: 23px;
+    border: none;
+    margin-right: 1px;
+}
+
+.priority-icon img {
+    width: 25px;
+    height: 25px;
+    margin-bottom: -8px;
+}
+
+.priority-icon-urg {
+    background-color: rgb(252 120 64);
+    width: 18px;
+    height: 18px;
+    border: 0.1px solid #88888838;
+    border-radius: 4px;
+    color: #ffffff;
+    margin-top: 15px;
+    margin-right: 10px;
+}
+
+.column-avatar {
+    margin-right: 8px;
+    margin-left: -10px;
+}
+
+.status-icon {
+    margin-top: 23px;
+    border: none;
+    margin-right: 1px;
+}
+
+.backlog-icon {
+    color: rgb(139, 139, 141);
+}
+
+.todo-icon {
+    color: rgb(244 245 248);
+    border: 3px solid rgba(139, 139, 141, 0.616);
+    border-radius: 50%;
+}
+
+.in-progress-icon {
+    color: rgb(241 201 70);
+}
+
+.done-icon {
+    color: rgb(95 107 210);
+}
+
+.cancelled-icon {
+    color: rgb(148 162 179);
+}
+
+.priotity-urgent-icon {
+    background-color: rgb(252 120 64);
+    width: 18px;
+    height: 18px;
+    border: 0.1px solid #88888838;
+    border-radius: 4px;
+    color: #ffffff;
+}
+
+@media screen and (max-width: 767px) {
+    .horizontal-columns {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .column {
+        flex: 1;
+        margin: 0 10px;
+        min-width: auto;
+    }
+
+    .filter-popup {
+        width: 100%;
+        left: 0;
+    }
+}
+
+.column-header-icons {
+    display: flex;
+    align-items: center;
+    margin-right: -30px;
+}
+
+.column-header-icons>* {
+    margin-top: 25px;
+    margin-left: 15px;
+    color: rgb(139, 139, 141);
+}
+
+.column-header-icons-right {
+    margin-left: auto;
+}

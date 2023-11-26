@@ -1,0 +1,142 @@
+.task-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px 16px 20px;
+    margin: 16px;
+    width: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 16px;
+    box-sizing: border-box;
+    max-width: 100%;
+    background-color: #fff;
+}
+
+.task-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.task-id {
+    color: rgb(139, 139, 141);
+}
+
+.task-avatar {
+    margin-right: -5px;
+}
+
+.task-title {
+    text-align: left;
+    font-weight: 500;
+    margin-right: 10%;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    max-height: 3em;
+}
+
+.tags {
+    display: flex;
+}
+
+.status-icon {
+    display: flex;
+}
+
+.card-backlog-icon {
+    color: rgb(139, 139, 141);
+    margin-right: 8px;
+    margin-top: 6px;
+}
+
+.card-todo-icon {
+    color: #fff;
+    border: 3px solid rgba(139, 139, 141, 0.616);
+    border-radius: 50%;
+    margin-right: 8px;
+    margin-top: 6px;
+}
+
+.card-in-progress-icon {
+    color: rgb(241 201 70);
+    margin-right: 8px;
+    margin-top: 6px;
+}
+
+.card-done-icon {
+    color: rgb(95 107 210);
+    margin-right: 8px;
+    margin-top: 6px;
+}
+
+.card-cancelled-icon {
+    color: rgb(148 162 179);
+    margin-right: 8px;
+    margin-top: 6px;
+}
+
+
+.task-tag {
+    width: 120px;
+    margin-top: 15px;
+    padding-left: 5px;
+    padding-bottom: 4px;
+    padding-top: 4px;
+    color: #888;
+    display: flex;
+    align-items: center;
+    border: 0.1px solid #88888838;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.circle-icon {
+    color: #b0b0b0;
+    margin-right: 2px;
+}
+
+.task-tag-text {
+    display: inline-block;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.priority-icon-1 {
+    padding: 3px;
+    width: 19px;
+    border: 0.1px solid #88888838;
+    border-radius: 4px;
+    color: #888;
+    margin-top: 15px;
+    margin-right: 10px;
+}
+
+.priority-icon-2 {
+    background-color: rgb(252 120 64);
+    width: 18px;
+    height: 20px;
+    padding-bottom: 2px;
+    border: 0.1px solid #88888838;
+    border-radius: 4px;
+    color: #ffffff;
+    margin-top: 15px;
+    margin-right: 10px;
+}
+
+.priority-icon-img {
+    padding: 3px;
+    width: 22px;
+    height: 22px;
+    border: 0.1px solid #88888838;
+    border-radius: 4px;
+    color: #888;
+    margin-top: 15px;
+    margin-right: 10px;
+    padding-right: 12px;
+}
+
+.priority-icon-img img {
+    width: 30px;
+    height: 20px;
+}
